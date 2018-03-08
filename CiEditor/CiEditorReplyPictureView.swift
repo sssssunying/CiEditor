@@ -65,6 +65,7 @@ class CiEditorReplyPictureView: UIView, UIImagePickerControllerDelegate, UINavig
         layout.minimumInteritemSpacing = 5
         layout.scrollDirection = .horizontal
         let view = UICollectionView.init(frame: CGRect.init(x: 0, y: 0, width: SCREENWIDTH, height: 214), collectionViewLayout: layout)
+        view.backgroundColor = .white
         view.delegate = self
         view.dataSource = self
         view.register(CiEditorReplyPictrueCollectionViewCell.self, forCellWithReuseIdentifier: NSStringFromClass(CiEditorReplyPictrueCollectionViewCell.self))
