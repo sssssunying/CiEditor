@@ -18,7 +18,6 @@ class CiEditorReplyPictrueCollectionViewCell: UICollectionViewCell {
         sv(imageView, btnCheck)
         imageView.top(0).bottom(0).left(0).right(0)
         btnCheck.top(15).right(15).width(30).height(30)
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

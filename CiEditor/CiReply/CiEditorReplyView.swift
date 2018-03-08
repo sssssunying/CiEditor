@@ -11,6 +11,11 @@ import Stevia
 
 class CiEditorReplyView: UIView {
     
+    // MARK: 获取的内容
+    var selectedImageArray: [UIImage] = []
+    var content: String = ""
+    
+    // MARK: 初始化时设置的内容
     var parentViewController: UIViewController? {
         willSet{
             guard newValue != nil else {
@@ -20,11 +25,14 @@ class CiEditorReplyView: UIView {
             pictureView.parentViewController = newValue
         }
     }
-    
+
+    /// 自定义键盘弹出时。。。
     var showKeyBoard: CompleteBlockWithoutReturnWithoutParameter?
+    /// 自定义键盘隐藏时。。。
     var hideKeyBoard: CompleteBlockWithoutReturnWithoutParameter?
     var sendClosure : CompleteBlockWithoutReturnWithoutParameter?
     
+    // MARK: 私有属性
     private var isKeyBoardShow  = false
     private var ciEmojiButton: CiEditorReplyViewToolButton?
     private var ciPicButton: CiEditorReplyViewToolButton?
@@ -32,6 +40,8 @@ class CiEditorReplyView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        backgroundColor = .yellow
 
         addSubview(textView)
         addSubview(sendButton)
@@ -40,14 +50,8 @@ class CiEditorReplyView: UIView {
         NotificationCenter.default.addObserver(self, selector: #selector(willHideKeyBoard(notifictaion:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didKeyBoardChangeFrame(notifictaion:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
         
-        sv(sendButton, textView,toolView)
-        layout(
-            7.5,
-            |-15-textView-57-| ~ 34,
-            7.5,
-            |toolView| ~ 44,
-            ""
-        )
+        sv(sendButton)
+
         sendButton.width(57).height(23).right(0)
         alignHorizontally(sendButton, with: textView)
         
@@ -64,10 +68,18 @@ class CiEditorReplyView: UIView {
         toolView.addSubview(ciEmojiButton!)
         toolView.addSubview(ciPicButton!)
         toolView.addSubview(ciCamButton!)
+        
+        emojiView.clickOneClosure = { [weak self] (image) in
+            self?.selectedImageArray = [image as! UIImage]
+            guard self?.sendClosure != nil else {
+                return
+            }
+            self?.sendClosure!()
+        }
     }
     
     fileprivate lazy var pictureView: CiEditorReplyPictureView = {
-        let view = CiEditorReplyPictureView.init(frame: CGRect.init(x: 0, y: SCREENHEIGHT, width: SCREENWIDTH, height: 258), maxCount: 4)
+        let view = CiEditorReplyPictureView.init(frame: CGRect.init(x: 0, y: SCREENHEIGHT, width: SCREENWIDTH, height: 258))
         view.isHidden = true
         return view
     }()
@@ -75,14 +87,11 @@ class CiEditorReplyView: UIView {
     fileprivate lazy var emojiView: CiEditorReplyEmojiView = {
         let view = CiEditorReplyEmojiView.init(frame: CGRect(x: 0, y: SCREENHEIGHT, width: SCREENWIDTH, height: 180))
         view.isHidden = true
-        view.clickOneClosure = { selectedEmoji in
-            
-        }
         return view
     }()
     
     fileprivate lazy var toolView: UIView = UIView().then {
-        $0.frame = CGRect(x: 0, y: 0, width: SCREENWIDTH, height: 44)
+        $0.frame = CGRect(x: 0, y: 50, width: SCREENWIDTH, height: 44)
     }
     
     fileprivate lazy var sendButton: UIButton = UIButton().then {
@@ -94,6 +103,9 @@ class CiEditorReplyView: UIView {
         $0.setTitleColor(GREENMAINCOLOR, for: .normal)
         $0.setTitleColor(GREENMAINCOLOR.withAlphaComponent(0.5), for: .disabled)
         $0.ciAction(at: .touchUpInside, handle: {[weak self] (sender) in
+            guard self?.sendClosure != nil else {
+                return
+            }
             self?.sendClosure!()
         })
     }
@@ -146,6 +158,24 @@ class CiEditorReplyView: UIView {
 }
 
 extension CiEditorReplyView {
+    
+    func sendCurrentEditorContent( isSuccess: Bool) {
+        content = textView.text
+        
+        if pictureView.isHidden == false {
+            selectedImageArray = pictureView.selectedImageArray
+        }
+        if isSuccess == true {
+            textView.text = ""
+        }
+        ciEmojiButton?.isSelected = false
+        ciCamButton?.isSelected = false
+        ciPicButton?.isSelected = false
+        emojiView.isHidden = true
+        pictureView.isHidden = true
+        textView.resignFirstResponder()
+        frame = CGRect(x: 0, y: SCREENHEIGHT - self.frame.height, width: SCREENWIDTH, height: self.frame.height)
+    }
     
     @objc func emoji( sender: UIButton ) {
         emojiView.frame = CGRect(x: 0, y: SCREENHEIGHT - 180 - ((iPhoneX) ? 34 : 0), width: SCREENWIDTH, height: 180 + ((iPhoneX) ? 34 : 0))
@@ -220,6 +250,8 @@ extension CiEditorReplyView {
         if (showKeyBoard != nil) {
             showKeyBoard!()
         }
+        emojiView.isHidden = true
+        pictureView.isHidden = true
         let framOfKeyboard: CGRect = notifictaion.userInfo?[UIKeyboardFrameEndUserInfoKey] as! CGRect
         var frameOfView                    = frame
         frameOfView.size.height            = frame.height
@@ -268,12 +300,14 @@ extension CiEditorReplyView: HPGrowingTextViewDelegate {
     }
     
     func growingTextView(_ growingTextView: HPGrowingTextView!, willChangeHeight height: Float) {
-        
+
         let changeHeight = growingTextView.frame.size.height - CGFloat(height)
-        var tmpRect      = frame
+        var tmpRect = frame
         tmpRect.size.height -= changeHeight
         tmpRect.origin.y += changeHeight
         frame = tmpRect
+        toolView.frame = CGRect(x: 0, y: tmpRect.size.height - 44 - ((iPhoneX) ? 34 : 0) , width: SCREENWIDTH, height: 44)
+        
     }
     
 }

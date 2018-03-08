@@ -20,7 +20,7 @@ class CiEditorReplyPictureView: UIView, UIImagePickerControllerDelegate, UINavig
     }
     
     var selectedImageArray: [UIImage] = []
-    fileprivate var maxNumber: Int?
+    var maxNumber: Int = 1
     fileprivate var currentCount: Int = 0
     
     fileprivate let vc = MTImagePickerController.instance
@@ -29,9 +29,8 @@ class CiEditorReplyPictureView: UIView, UIImagePickerControllerDelegate, UINavig
     
     private var dataSource = [MTImagePickerModel]()
     
-    init(frame: CGRect, maxCount: Int) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
-        self.maxNumber = maxCount
         
         backgroundColor = .white
         bottomView.addSubview(libraryButton)
@@ -49,14 +48,7 @@ class CiEditorReplyPictureView: UIView, UIImagePickerControllerDelegate, UINavig
         bottomView.left(0).right(0).bottom(bottomBlank).height(44)
         
         refreshCountLabel()
-        
-        MTImagePickerDataSource.fetchDefault(type: .Photos, mediaTypes: [MTImagePickerMediaType.Photo]) {
-            $0.getMTImagePickerModelsListAsync { (models) in
-                self.dataSource = models
-                self.collectionView.reloadData()
-            }
-        }
-        
+        obtainLocalPhotos()
     }
     
     fileprivate lazy var collectionView: UICollectionView = {
@@ -107,11 +99,20 @@ class CiEditorReplyPictureView: UIView, UIImagePickerControllerDelegate, UINavig
 
 extension CiEditorReplyPictureView {
     
+    func obtainLocalPhotos() {
+        MTImagePickerDataSource.fetchDefault(type: .Photos, mediaTypes: [MTImagePickerMediaType.Photo]) {
+            $0.getMTImagePickerModelsListAsync { [weak self] (models) in
+                self?.dataSource = models
+                self?.collectionView.reloadData()
+            }
+        }
+    }
+    
     func showMTImagePicker() {
         vc.mediaTypes = [MTImagePickerMediaType.Photo]
         vc.source = MTImagePickerSource.Photos
         vc.imagePickerDelegate = self
-        vc.maxCount = maxNumber ?? 1
+        vc.maxCount = maxNumber
         vc.defaultShowCameraRoll = true
         parentViewController?.present(vc, animated: true, completion: nil)
     }
@@ -125,9 +126,14 @@ extension CiEditorReplyPictureView {
     
     func refreshCountLabel() {
         currentCount = vc.selectedSource.count
+        for tmpOne in vc.selectedSource {
+            tmpOne.getImageAsync(complete: { (origImage) in
+                self.selectedImageArray.append(origImage!)
+            })
+        }
         let attribute = NSMutableAttributedString()
         attribute.append(NSAttributedString.init(attributedString: NSAttributedString.init(string: currentCount.description, attributes: [NSAttributedStringKey.font: MEDIUMFONT20 as Any,NSAttributedStringKey.foregroundColor:(BLACKLIGHTCOLOR)])))
-        attribute.append(NSAttributedString.init(string: "/".appending((maxNumber?.description)!), attributes: [NSAttributedStringKey.font: FONT14 as Any,NSAttributedStringKey.foregroundColor:(BLACKLIGHTCOLOR)]))
+        attribute.append(NSAttributedString.init(string: "/".appending((maxNumber.description)), attributes: [NSAttributedStringKey.font: FONT14 as Any,NSAttributedStringKey.foregroundColor:(BLACKLIGHTCOLOR)]))
         countLabel.attributedText = attribute
     }
     
@@ -166,8 +172,13 @@ extension CiEditorReplyPictureView: UICollectionViewDataSource, UICollectionView
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! CiEditorReplyPictrueCollectionViewCell
+        btnCheckClick(sender: cell.btnCheck)
+    }
+    
     @objc func btnCheckClick(sender: UIButton) {
-        if vc.selectedSource.count < maxNumber! || sender.isSelected == true {
+        if vc.selectedSource.count < maxNumber || sender.isSelected == true {
             sender.isSelected = !sender.isSelected
             let cell = sender.superview?.superview as! CiEditorReplyPictrueCollectionViewCell
             let index = collectionView.indexPath(for: cell)?.row

@@ -12,7 +12,6 @@ import UIKit
 import Then
 import SVProgressHUD
 
-
 let SCHEME_URL_BASE = "ci123apps://www.ci123.com/pregnancy/"
 
 typealias CompleteBlockWithoutReturnWithoutParameter = (() -> (Void))

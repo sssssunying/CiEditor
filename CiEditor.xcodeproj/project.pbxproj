@@ -268,6 +268,18 @@
 			path = HPGrowingText;
 			sourceTree = "<group>";
 		};
+		B3197154205117DC0015ADA9 /* CiReply */ = {
+			isa = PBXGroup;
+			children = (
+				B39DD74C204D290400DAEC03 /* CiEditorReplyView.swift */,
+				B39DD915204E32D400DAEC03 /* CiEditorReplyPictureView.swift */,
+				B30DCC8D204FB85B00F27556 /* CiEditorReplyPictrueCollectionViewCell.swift */,
+				B39DD90D204D53F500DAEC03 /* CiEditorReplyEmojiView.swift */,
+				B39DD90B204D3DBE00DAEC03 /* CiEditorReplyViewToolButton.swift */,
+			);
+			path = CiReply;
+			sourceTree = "<group>";
+		};
 		B39DD6F5204D19A500DAEC03 = {
 			isa = PBXGroup;
 			children = (
@@ -294,16 +306,12 @@
 		B39DD700204D19A500DAEC03 /* CiEditor */ = {
 			isa = PBXGroup;
 			children = (
+				B3197154205117DC0015ADA9 /* CiReply */,
 				B31971522051147B0015ADA9 /* Resource */,
 				B39DD7B0204D3B8100DAEC03 /* Other */,
 				B39DD787204D307200DAEC03 /* Config.swift */,
 				B39DD701204D19A500DAEC03 /* AppDelegate.swift */,
 				B39DD703204D19A500DAEC03 /* ViewController.swift */,
-				B39DD74C204D290400DAEC03 /* CiEditorReplyView.swift */,
-				B39DD915204E32D400DAEC03 /* CiEditorReplyPictureView.swift */,
-				B30DCC8D204FB85B00F27556 /* CiEditorReplyPictrueCollectionViewCell.swift */,
-				B39DD90D204D53F500DAEC03 /* CiEditorReplyEmojiView.swift */,
-				B39DD90B204D3DBE00DAEC03 /* CiEditorReplyViewToolButton.swift */,
 			);
 			path = CiEditor;
 			sourceTree = "<group>";
