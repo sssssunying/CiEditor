@@ -1,0 +1,21 @@
+PODS:
+  - Masonry (1.0.2)
+  - SteviaLayout (4.2.0)
+  - SVProgressHUD (2.2.5)
+  - Then (2.3.0)
+
+DEPENDENCIES:
+  - Masonry (= 1.0.2)
+  - SteviaLayout
+  - SVProgressHUD
+  - Then
+
+SPEC CHECKSUMS:
+  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
+  SteviaLayout: 0d2112caea45707695e8c718262c8ea3dd37ef17
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  Then: ee21c97b85ff6062b9b0080c9abb1eea46743345
+
+PODFILE CHECKSUM: 4a3e9fa708fba890060e5340f8765f76130f10a2
+
+COCOAPODS: 1.4.0
