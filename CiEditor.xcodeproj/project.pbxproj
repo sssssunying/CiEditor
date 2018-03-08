@@ -91,6 +91,10 @@
 		B30DCC75204F980D00F27556 /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
 		B30DCC76204F980D00F27556 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B30DCC8D204FB85B00F27556 /* CiEditorReplyPictrueCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiEditorReplyPictrueCollectionViewCell.swift; sourceTree = "<group>"; };
+		B319714E205114470015ADA9 /* zh-Hant-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-HK"; path = "zh-Hant-HK.lproj/MTImagePicker.strings"; sourceTree = "<group>"; };
+		B319714F205114470015ADA9 /* zh-Hant-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-HK"; path = "zh-Hant-HK.lproj/Main.strings"; sourceTree = "<group>"; };
+		B3197150205114470015ADA9 /* zh-Hant-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-HK"; path = "zh-Hant-HK.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		B3197151205114490015ADA9 /* zh-Hant-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-HK"; path = "zh-Hant-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B39DD6FE204D19A500DAEC03 /* CiEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CiEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B39DD701204D19A500DAEC03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B39DD703204D19A500DAEC03 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -240,14 +244,34 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
+		B31971522051147B0015ADA9 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				B39DD70D204D19A500DAEC03 /* Info.plist */,
+				B39DD705204D19A500DAEC03 /* Main.storyboard */,
+				B39DD708204D19A500DAEC03 /* Assets.xcassets */,
+				B39DD70A204D19A500DAEC03 /* LaunchScreen.storyboard */,
+				B39DD74A204D274E00DAEC03 /* CiReply.xcassets */,
+				B39DD90F204D56E100DAEC03 /* CiEmoji.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		B3197153205114940015ADA9 /* HPGrowingText */ = {
+			isa = PBXGroup;
+			children = (
+				B39DD7C0204D3B8100DAEC03 /* HPTextViewInternal.h */,
+				B39DD82F204D3B8100DAEC03 /* HPTextViewInternal.m */,
+				B39DD854204D3B8100DAEC03 /* HPGrowingTextView.h */,
+				B39DD7DE204D3B8100DAEC03 /* HPGrowingTextView.m */,
+			);
+			path = HPGrowingText;
+			sourceTree = "<group>";
+		};
 		B39DD6F5204D19A500DAEC03 = {
 			isa = PBXGroup;
 			children = (
 				B39DD90A204D3BB700DAEC03 /* CiEditor-Bridging-Header.h */,
-				B39DD7B0204D3B8100DAEC03 /* Other */,
-				B39DD74A204D274E00DAEC03 /* CiReply.xcassets */,
-				B39DD90F204D56E100DAEC03 /* CiEmoji.xcassets */,
-				B39DD787204D307200DAEC03 /* Config.swift */,
 				B39DD700204D19A500DAEC03 /* CiEditor */,
 				B39DD715204D19A500DAEC03 /* CiEditorTests */,
 				B39DD720204D19A500DAEC03 /* CiEditorUITests */,
@@ -270,12 +294,11 @@
 		B39DD700204D19A500DAEC03 /* CiEditor */ = {
 			isa = PBXGroup;
 			children = (
+				B31971522051147B0015ADA9 /* Resource */,
+				B39DD7B0204D3B8100DAEC03 /* Other */,
+				B39DD787204D307200DAEC03 /* Config.swift */,
 				B39DD701204D19A500DAEC03 /* AppDelegate.swift */,
 				B39DD703204D19A500DAEC03 /* ViewController.swift */,
-				B39DD705204D19A500DAEC03 /* Main.storyboard */,
-				B39DD708204D19A500DAEC03 /* Assets.xcassets */,
-				B39DD70A204D19A500DAEC03 /* LaunchScreen.storyboard */,
-				B39DD70D204D19A500DAEC03 /* Info.plist */,
 				B39DD74C204D290400DAEC03 /* CiEditorReplyView.swift */,
 				B39DD915204E32D400DAEC03 /* CiEditorReplyPictureView.swift */,
 				B30DCC8D204FB85B00F27556 /* CiEditorReplyPictrueCollectionViewCell.swift */,
@@ -306,16 +329,13 @@
 		B39DD7B0204D3B8100DAEC03 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				B3197153205114940015ADA9 /* HPGrowingText */,
 				B30DCC57204F980D00F27556 /* MTImagePicker */,
 				B39DDA0B204E963B00DAEC03 /* ConfigConst.h */,
 				B39DDA0C204E963B00DAEC03 /* ConfigConst.m */,
 				B39DD9CA204E7D6700DAEC03 /* SYImagePicker.h */,
 				B39DD9C9204E7D6700DAEC03 /* SYImagePicker.m */,
 				B39DD911204D5B3300DAEC03 /* HomeToolCell.swift */,
-				B39DD7C0204D3B8100DAEC03 /* HPTextViewInternal.h */,
-				B39DD82F204D3B8100DAEC03 /* HPTextViewInternal.m */,
-				B39DD854204D3B8100DAEC03 /* HPGrowingTextView.h */,
-				B39DD7DE204D3B8100DAEC03 /* HPGrowingTextView.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -422,6 +442,7 @@
 				en,
 				Base,
 				"zh-Hans",
+				"zh-Hant-HK",
 			);
 			mainGroup = B39DD6F5204D19A500DAEC03;
 			productRefGroup = B39DD6FF204D19A500DAEC03 /* Products */;
@@ -609,6 +630,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B30DCC71204F980D00F27556 /* Base */,
+				B319714E205114470015ADA9 /* zh-Hant-HK */,
 			);
 			name = MTImagePicker.storyboard;
 			sourceTree = "<group>";
@@ -618,6 +640,7 @@
 			children = (
 				B30DCC74204F980D00F27556 /* zh-Hans */,
 				B30DCC76204F980D00F27556 /* Base */,
+				B3197151205114490015ADA9 /* zh-Hant-HK */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -626,6 +649,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B39DD706204D19A500DAEC03 /* Base */,
+				B319714F205114470015ADA9 /* zh-Hant-HK */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -634,6 +658,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B39DD70B204D19A500DAEC03 /* Base */,
+				B3197150205114470015ADA9 /* zh-Hant-HK */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -755,7 +780,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5GLQJQ73UD;
-				INFOPLIST_FILE = CiEditor/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/CiEditor/Resource/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "--------.CiEditor";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -772,7 +797,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5GLQJQ73UD;
-				INFOPLIST_FILE = CiEditor/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/CiEditor/Resource/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "--------.CiEditor";
 				PRODUCT_NAME = "$(TARGET_NAME)";
