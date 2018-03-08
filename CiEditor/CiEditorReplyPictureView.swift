@@ -33,6 +33,7 @@ class CiEditorReplyPictureView: UIView, UIImagePickerControllerDelegate, UINavig
         super.init(frame: frame)
         self.maxNumber = maxCount
         
+        backgroundColor = .white
         bottomView.addSubview(libraryButton)
         bottomView.addSubview(countLabel)
         addSubview(bottomView)
