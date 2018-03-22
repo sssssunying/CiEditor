@@ -1,14 +1,16 @@
 //
-//  CiEditorReplyViewToolButton.swift
-//  CiEditor
+//  CiBaseButton.swift
+//  PregNotice
 //
-//  Created by 大大大大_荧🐾 on 2018/3/5.
-//  Copyright © 2018年 大大大大_荧🐾. All rights reserved.
+//  Created by 大大大大_荧🐾 on 2018/3/22.
+//  Copyright © 2018年 孙荧. All rights reserved.
 //
 
 import UIKit
 
-class CiEditorReplyViewToolButton: UIButton {
+/// 生成常用 Button 控件
+/// 单个图片 generateButton(imageName: )
+class CiBaseButton: UIButton {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -22,7 +24,7 @@ class CiEditorReplyViewToolButton: UIButton {
         setImage(UIImage(named: imageName + "_unselected"), for: .normal)
         setImage(UIImage(named: imageName + "_selected"), for: .selected)
     }
-    
+
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -30,7 +32,5 @@ class CiEditorReplyViewToolButton: UIButton {
         // Drawing code
     }
     */
-    
-    
 
 }

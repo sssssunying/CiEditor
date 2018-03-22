@@ -5,5 +5,6 @@ pod 'SteviaLayout'
 pod 'Then'
 pod 'SVProgressHUD'
 pod 'Masonry','1.0.2'
+pod 'StatefulViewController', '3.0'
 
 end
