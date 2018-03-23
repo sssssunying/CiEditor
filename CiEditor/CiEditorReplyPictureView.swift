@@ -32,6 +32,7 @@ class CiEditorReplyPictureView: UIView, UIImagePickerControllerDelegate, UINavig
     
     init(frame: CGRect, maxCount: Int) {
         super.init(frame: frame)
+        backgroundColor = .white
         self.maxNumber = maxCount
         
         bottomView.addSubview(libraryButton)
@@ -194,9 +195,8 @@ extension CiEditorReplyPictureView: UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let model = self.dataSource[indexPath.row]
-        let tmpSize = model.getPreviewImage()?.size
-//        let tmpWidth = ((tmpSize?.width)!) / ((tmpSize?.height)! * 214.0)
-        return CGSize.init(width: 214.0 , height: 214.0)
+        let tmpSize = model.getPreviewImage()?.size ?? CGSize.init(width: 0, height: 1)
+        return CGSize.init(width: (tmpSize.width) / (tmpSize.height) * 214.0, height: 214.0)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

@@ -32,6 +32,17 @@
 		B3313C7120637F4900B1BD55 /* SBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3313C7020637F4900B1BD55 /* SBaseViewController.swift */; };
 		B3313C7320637FDB00B1BD55 /* CiEditorReplyViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3313C7220637FDB00B1BD55 /* CiEditorReplyViewViewController.swift */; };
 		B3313C752063846F00B1BD55 /* CiBaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3313C742063846F00B1BD55 /* CiBaseButton.swift */; };
+		B3313C8D2063BF4900B1BD55 /* ZanButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3313C892063BF4900B1BD55 /* ZanButton.swift */; };
+		B3313C8E2063BF4900B1BD55 /* CiZan.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3313C8B2063BF4900B1BD55 /* CiZan.swift */; };
+		B3313C8F2063BF4900B1BD55 /* ZanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3313C8C2063BF4900B1BD55 /* ZanViewModel.swift */; };
+		B3313CA820648F6600B1BD55 /* CiZanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3313CA420648F6600B1BD55 /* CiZanViewModel.swift */; };
+		B3313CA920648F6600B1BD55 /* CiZanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3313CA520648F6600B1BD55 /* CiZanModel.swift */; };
+		B3313CAA20648F6600B1BD55 /* CiZanButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3313CA720648F6600B1BD55 /* CiZanButton.swift */; };
+		B3313CAD2064943500B1BD55 /* NewShareControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3313CAB2064943500B1BD55 /* NewShareControlView.m */; };
+		B3313CB22064950900B1BD55 /* ShareBtnData.m in Sources */ = {isa = PBXBuildFile; fileRef = B3313CAE2064950800B1BD55 /* ShareBtnData.m */; };
+		B3313CB32064950900B1BD55 /* ShareBtnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3313CB02064950800B1BD55 /* ShareBtnCell.m */; };
+		B3313CB520649B6D00B1BD55 /* CiEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3313CB420649B6D00B1BD55 /* CiEditorViewController.swift */; };
+		B3313CB82064A2BD00B1BD55 /* SYHomeNoticeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B3313CB62064A2BD00B1BD55 /* SYHomeNoticeTool.m */; };
 		B39DD702204D19A500DAEC03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39DD701204D19A500DAEC03 /* AppDelegate.swift */; };
 		B39DD704204D19A500DAEC03 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39DD703204D19A500DAEC03 /* ViewController.swift */; };
 		B39DD707204D19A500DAEC03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B39DD705204D19A500DAEC03 /* Main.storyboard */; };
@@ -100,6 +111,21 @@
 		B3313C7020637F4900B1BD55 /* SBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBaseViewController.swift; sourceTree = "<group>"; };
 		B3313C7220637FDB00B1BD55 /* CiEditorReplyViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiEditorReplyViewViewController.swift; sourceTree = "<group>"; };
 		B3313C742063846F00B1BD55 /* CiBaseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CiBaseButton.swift; sourceTree = "<group>"; };
+		B3313C892063BF4900B1BD55 /* ZanButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZanButton.swift; sourceTree = "<group>"; };
+		B3313C8B2063BF4900B1BD55 /* CiZan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CiZan.swift; sourceTree = "<group>"; };
+		B3313C8C2063BF4900B1BD55 /* ZanViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZanViewModel.swift; sourceTree = "<group>"; };
+		B3313CA420648F6600B1BD55 /* CiZanViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CiZanViewModel.swift; sourceTree = "<group>"; };
+		B3313CA520648F6600B1BD55 /* CiZanModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CiZanModel.swift; sourceTree = "<group>"; };
+		B3313CA720648F6600B1BD55 /* CiZanButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CiZanButton.swift; sourceTree = "<group>"; };
+		B3313CAB2064943500B1BD55 /* NewShareControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewShareControlView.m; sourceTree = "<group>"; };
+		B3313CAC2064943500B1BD55 /* NewShareControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewShareControlView.h; sourceTree = "<group>"; };
+		B3313CAE2064950800B1BD55 /* ShareBtnData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareBtnData.m; sourceTree = "<group>"; };
+		B3313CAF2064950800B1BD55 /* ShareBtnCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareBtnCell.h; sourceTree = "<group>"; };
+		B3313CB02064950800B1BD55 /* ShareBtnCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareBtnCell.m; sourceTree = "<group>"; };
+		B3313CB12064950900B1BD55 /* ShareBtnData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareBtnData.h; sourceTree = "<group>"; };
+		B3313CB420649B6D00B1BD55 /* CiEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiEditorViewController.swift; sourceTree = "<group>"; };
+		B3313CB62064A2BD00B1BD55 /* SYHomeNoticeTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYHomeNoticeTool.m; sourceTree = "<group>"; };
+		B3313CB72064A2BD00B1BD55 /* SYHomeNoticeTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYHomeNoticeTool.h; sourceTree = "<group>"; };
 		B39DD6FE204D19A500DAEC03 /* CiEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CiEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B39DD701204D19A500DAEC03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B39DD703204D19A500DAEC03 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -250,6 +276,42 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
+		B3313C882063BF4900B1BD55 /* Zan */ = {
+			isa = PBXGroup;
+			children = (
+				B3313C8B2063BF4900B1BD55 /* CiZan.swift */,
+				B3313C892063BF4900B1BD55 /* ZanButton.swift */,
+				B3313C8C2063BF4900B1BD55 /* ZanViewModel.swift */,
+			);
+			path = Zan;
+			sourceTree = "<group>";
+		};
+		B3313CA220648F6600B1BD55 /* CiZan */ = {
+			isa = PBXGroup;
+			children = (
+				B3313CA320648F6600B1BD55 /* ViewModel */,
+				B3313CA520648F6600B1BD55 /* CiZanModel.swift */,
+				B3313CA620648F6600B1BD55 /* View */,
+			);
+			path = CiZan;
+			sourceTree = "<group>";
+		};
+		B3313CA320648F6600B1BD55 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B3313CA420648F6600B1BD55 /* CiZanViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		B3313CA620648F6600B1BD55 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B3313CA720648F6600B1BD55 /* CiZanButton.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		B39DD6F5204D19A500DAEC03 = {
 			isa = PBXGroup;
 			children = (
@@ -290,6 +352,7 @@
 				B3313C6E20637CDB00B1BD55 /* CiEditorFactory.swift */,
 				B3DA00C22060EB9E0053378F /* CiEditorModel.swift */,
 				B3DA00C02060EB000053378F /* CiEditorViewModel.swift */,
+				B3313CB420649B6D00B1BD55 /* CiEditorViewController.swift */,
 				B3313C7220637FDB00B1BD55 /* CiEditorReplyViewViewController.swift */,
 				B39DD74C204D290400DAEC03 /* CiEditorReplyView.swift */,
 				B39DD915204E32D400DAEC03 /* CiEditorReplyPictureView.swift */,
@@ -320,6 +383,16 @@
 		B39DD7B0204D3B8100DAEC03 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				B3313CB72064A2BD00B1BD55 /* SYHomeNoticeTool.h */,
+				B3313CB62064A2BD00B1BD55 /* SYHomeNoticeTool.m */,
+				B3313CAF2064950800B1BD55 /* ShareBtnCell.h */,
+				B3313CB02064950800B1BD55 /* ShareBtnCell.m */,
+				B3313CB12064950900B1BD55 /* ShareBtnData.h */,
+				B3313CAE2064950800B1BD55 /* ShareBtnData.m */,
+				B3313CAC2064943500B1BD55 /* NewShareControlView.h */,
+				B3313CAB2064943500B1BD55 /* NewShareControlView.m */,
+				B3313CA220648F6600B1BD55 /* CiZan */,
+				B3313C882063BF4900B1BD55 /* Zan */,
 				B30DCC57204F980D00F27556 /* MTImagePicker */,
 				B39DDA0B204E963B00DAEC03 /* ConfigConst.h */,
 				B39DDA0C204E963B00DAEC03 /* ConfigConst.m */,
@@ -524,18 +597,32 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CiEditor/Pods-CiEditor-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/StatefulViewController/StatefulViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/SteviaLayout/Stevia.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Then/Then.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StatefulViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Stevia.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Then.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -550,9 +637,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3313CB32064950900B1BD55 /* ShareBtnCell.m in Sources */,
+				B3313CA820648F6600B1BD55 /* CiZanViewModel.swift in Sources */,
 				B39DD8D4204D3B8200DAEC03 /* HPTextViewInternal.m in Sources */,
+				B3313CB22064950900B1BD55 /* ShareBtnData.m in Sources */,
 				B3313C7120637F4900B1BD55 /* SBaseViewController.swift in Sources */,
 				B30DCC7F204F980D00F27556 /* MTImagePickerModel.swift in Sources */,
+				B3313C8D2063BF4900B1BD55 /* ZanButton.swift in Sources */,
+				B3313CA920648F6600B1BD55 /* CiZanModel.swift in Sources */,
+				B3313C8E2063BF4900B1BD55 /* CiZan.swift in Sources */,
 				B3313C7320637FDB00B1BD55 /* CiEditorReplyViewViewController.swift in Sources */,
 				B3313C752063846F00B1BD55 /* CiBaseButton.swift in Sources */,
 				B30DCC79204F980D00F27556 /* MTImagePickerAssetsController.swift in Sources */,
@@ -565,11 +658,15 @@
 				B39DD74D204D290400DAEC03 /* CiEditorReplyView.swift in Sources */,
 				B30DCC84204F980D00F27556 /* FlashAlertView.swift in Sources */,
 				B30DCC77204F980D00F27556 /* MTImagePickerPreviewController.swift in Sources */,
+				B3313CAA20648F6600B1BD55 /* CiZanButton.swift in Sources */,
 				B39DD788204D307200DAEC03 /* Config.swift in Sources */,
 				B30DCC85204F980D00F27556 /* ImagePickerPreviewCell.swift in Sources */,
 				B30DCC7E204F980D00F27556 /* MTImagePickerAssetsModel.swift in Sources */,
 				B3DA00C12060EB000053378F /* CiEditorViewModel.swift in Sources */,
+				B3313CB520649B6D00B1BD55 /* CiEditorViewController.swift in Sources */,
 				B30DCC7B204F980D00F27556 /* LoadingViewController.swift in Sources */,
+				B3313CAD2064943500B1BD55 /* NewShareControlView.m in Sources */,
+				B3313C8F2063BF4900B1BD55 /* ZanViewModel.swift in Sources */,
 				B39DD912204D5B3300DAEC03 /* HomeToolCell.swift in Sources */,
 				B30DCC78204F980D00F27556 /* MTImagePickerAlbumsController.swift in Sources */,
 				B39DD704204D19A500DAEC03 /* ViewController.swift in Sources */,
@@ -578,6 +675,7 @@
 				B3313C6F20637CDB00B1BD55 /* CiEditorFactory.swift in Sources */,
 				B30DCC7A204F980D00F27556 /* MTImagePickerController.swift in Sources */,
 				B30DCC81204F980D00F27556 /* VideoPickerPreviewCell.swift in Sources */,
+				B3313CB82064A2BD00B1BD55 /* SYHomeNoticeTool.m in Sources */,
 				B30DCC80204F980D00F27556 /* MTImagePickerDataSource.swift in Sources */,
 				B30DCC82204F980D00F27556 /* MTImagePickerFlowLayout.swift in Sources */,
 				B30DCC7C204F980D00F27556 /* Extensions.swift in Sources */,

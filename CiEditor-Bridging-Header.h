@@ -11,5 +11,7 @@
 
 #import "HPGrowingTextView.h"
 #import "SYImagePicker.h"
+#import "NewShareControlView.h"
+#import "SYHomeNoticeTool.h"
 
 #endif /* CiEditor_Bridging_Header_h */

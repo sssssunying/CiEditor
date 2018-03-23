@@ -21,5 +21,18 @@ struct CiEditor {
 }
 
 class CiEditorModel: NSObject {
+    
+    
+    
+    var titleString: String = ""
+    var contentString: String = ""
+    var selectedImageArray: [UIImage] = []
+    
+    override init() {
+        super.init()
+    }
+    
+    
+    
 
 }

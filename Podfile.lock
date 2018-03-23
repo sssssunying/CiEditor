@@ -1,24 +1,48 @@
 PODS:
+  - Alamofire (4.7.0)
   - Masonry (1.0.2)
+  - Moya (11.0.1):
+    - Moya/Core (= 11.0.1)
+  - Moya/Core (11.0.1):
+    - Alamofire (~> 4.1)
+    - Result (~> 3.0)
+  - ObjectMapper (3.1.0)
+  - Result (3.2.4)
+  - RxCocoa (4.1.2):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.1.2)
   - StatefulViewController (3.0)
   - SteviaLayout (4.2.0)
   - SVProgressHUD (2.2.5)
+  - SwiftyJSON (3.1.4)
   - Then (2.3.0)
 
 DEPENDENCIES:
   - Masonry (= 1.0.2)
+  - Moya
+  - ObjectMapper
+  - RxCocoa
+  - RxSwift
   - StatefulViewController (= 3.0)
   - SteviaLayout
   - SVProgressHUD
+  - SwiftyJSON (= 3.1.4)
   - Then
 
 SPEC CHECKSUMS:
+  Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
+  Moya: 3d594ada51a21cc02b18739ab578a1984f900c8a
+  ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
+  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
+  RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
+  RxSwift: e49536837d9901277638493ea537394d4b55f570
   StatefulViewController: 4803bf900d44de26074344998e10e041113b5931
   SteviaLayout: 0d2112caea45707695e8c718262c8ea3dd37ef17
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   Then: ee21c97b85ff6062b9b0080c9abb1eea46743345
 
-PODFILE CHECKSUM: 1d3516836350fe0f877becc0cc779d1d55de7b5b
+PODFILE CHECKSUM: 6f95ae098ef67ce0f7dcaabef990578be80d43a9
 
 COCOAPODS: 1.4.0

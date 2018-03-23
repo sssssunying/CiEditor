@@ -12,6 +12,8 @@ import Photos
 
 class CiEditorReplyView: UIView {
     
+    var viewModel: CiEditorViewModel = CiEditorViewModel()
+    
     var parentViewController: UIViewController? {
         willSet{
             guard newValue != nil else {
@@ -37,6 +39,8 @@ class CiEditorReplyView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
+        backgroundColor = .white
+        
         addSubview(textView)
         addSubview(sendButton)
         addSubview(toolView)
@@ -50,7 +54,7 @@ class CiEditorReplyView: UIView {
             |-15-textView-57-|,
             7.5,
             |toolView| ~ 44,
-            0
+            (iPhoneX ? 34 : 0)
         )
         sendButton.width(57).height(23).right(0)
         alignHorizontally(sendButton, with: textView)
@@ -126,6 +130,18 @@ class CiEditorReplyView: UIView {
         return textView
     }()
     
+    lazy var zanButton: ZanButton = ZanButton().then {
+        $0.frame = CGRect.init(x: 0 , y: 0, width: 40, height: 49)
+        $0.setButtonStyle(style: "topLeft")
+        $0.viewModel =  ZanViewModel.init(zan: CiZan.init(zanType: CiZanType.zanMamaTopic, zanId: "1", zanNum: 11, isZan: false))
+    }
+    
+    fileprivate lazy var shareBottom: NewShareControlView = {
+        let share                      = NewShareControlView()
+        share.shareControlViewDelegate = self
+        return share
+    }()
+    
     fileprivate lazy var imagePicker: SYImagePicker = {
         let imagePicker = SYImagePicker.init()
         imagePicker.showViewController = self.parentViewController
@@ -167,7 +183,7 @@ extension CiEditorReplyView {
         }
     }
     
-    fileprivate func generateToolViewButton(replyType: CiEditorType) -> [CiBaseButton] {
+    fileprivate func generateToolViewButton(replyType: CiEditorType) -> [UIButton] {
         
         switch replyType {
         case ciEditorReplyViewTypeAll:
@@ -184,7 +200,7 @@ extension CiEditorReplyView {
             ciCamButton?.addTarget(self, action: #selector(takePhoto(sender:)), for: .touchUpInside)
             return [ciEmojiButton!, ciPicButton!, ciCamButton!]
         case ciEditorReplyViewTypeMamaTopic:
-            ciPicButton = CiBaseButton(frame: CGRect.init(x: 52, y: 0, width: 52, height: 44))
+            ciPicButton = CiBaseButton(frame: CGRect.init(x: 52 * 0, y: 0, width: 52, height: 44))
             ciPicButton?.generateButton(imageName: "cireply_picture")
             imageCountTipLabel.frame = CGRect.init(x: 52 - 12 - 6, y: 6, width: 12, height: 12)
             ciPicButton?.addSubview(imageCountTipLabel)
@@ -193,12 +209,35 @@ extension CiEditorReplyView {
             ciCamButton?.generateButton(imageName: "cireply_camare")
             ciCamButton?.addTarget(self, action: #selector(takePhoto(sender:)), for: .touchUpInside)
             ciShaBuuton = CiBaseButton(frame: CGRect.init(x: 52 * 2, y: 0, width: 52, height: 44))
-            ciShaBuuton?.generateButton(imageName: "cireply_camare")
+            ciShaBuuton?.setImage(UIImage(named:"todaytipdetailheaderbottomview_share"), for: .normal)
             return [ciPicButton!, ciCamButton!, ciShaBuuton!]
         default:
-            break
+            ciPicButton = CiBaseButton(frame: CGRect.init(x: 52 * 0, y: 0, width: 52, height: 44))
+            ciPicButton?.generateButton(imageName: "cireply_picture")
+            imageCountTipLabel.frame = CGRect.init(x: 52 - 12 - 6, y: 6, width: 12, height: 12)
+            ciPicButton?.addSubview(imageCountTipLabel)
+            ciPicButton?.addTarget(self, action: #selector(picture(sender:)), for: .touchUpInside)
+            ciCamButton = CiBaseButton(frame: CGRect.init(x: 52 * 1, y: 0, width: 52, height: 44))
+            ciCamButton?.generateButton(imageName: "cireply_camare")
+            ciCamButton?.addTarget(self, action: #selector(takePhoto(sender:)), for: .touchUpInside)
+            ciShaBuuton = CiBaseButton(frame: CGRect.init(x: 52 * 2, y: 0, width: 44, height: 44))
+            ciShaBuuton?.setImage(UIImage(named:"todaytipdetailheaderbottomview_share"), for: .normal)
+            ciShaBuuton?.addTarget(self, action: #selector(share(sender:)), for: .touchUpInside)
+            zanButton.frame = CGRect.init(x: 52 * 3 , y: 0, width: 44, height: 44)
+            return [ciPicButton!, ciCamButton!, ciShaBuuton!, zanButton]
         }
-        return []
+    }
+    
+    @objc func share( sender: UIButton) {
+        textView.resignFirstResponder()
+        shareBottom.postShareSuccessToSever = {
+            
+        }
+        shareBottom.title     = "todaytip_share_icon"
+        shareBottom.content   = "todaytip_share_icon"
+        shareBottom.url       = "todaytip_share_icon"
+        shareBottom.image     = UIImage.init(named: "todaytip_share_icon")
+        shareBottom.show(in: self.parentViewController)
     }
     
     @objc func emoji( sender: UIButton ) {
@@ -313,11 +352,8 @@ extension CiEditorReplyView {
 extension CiEditorReplyView: HPGrowingTextViewDelegate {
 
     func growingTextViewDidChange(_ growingTextView: HPGrowingTextView!) {
-        if growingTextView.text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count > 1 {
-            sendButton.isEnabled = true
-        } else {
-            sendButton.isEnabled = false
-        }
+        viewModel.postModel.contentString = growingTextView.text
+        sendButton.isEnabled = viewModel.checkSendCondition()
     }
     
     func growingTextViewShouldReturn(_ growingTextView: HPGrowingTextView!) -> Bool {
@@ -334,5 +370,11 @@ extension CiEditorReplyView: HPGrowingTextViewDelegate {
         frame = tmpRect
         
     }
+    
+}
+
+extension CiEditorReplyView: ShareControlViewDelegate {
+    
+    
     
 }
