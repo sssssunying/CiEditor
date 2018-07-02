@@ -44,9 +44,8 @@ class CiEditorReplyView: UIView {
         addSubview(textView)
         addSubview(sendButton)
         addSubview(toolView)
-        NotificationCenter.default.addObserver(self, selector: #selector(willShowKeyBoard(notifictaion:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(willHideKeyBoard(notifictaion:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(didKeyBoardChangeFrame(notifictaion:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+        
+        initNotification()
         
         sv(sendButton, textView,toolView)
         layout(
@@ -161,6 +160,10 @@ class CiEditorReplyView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        deInitNotification()
     }
     
     
@@ -278,6 +281,18 @@ extension CiEditorReplyView {
             return
         }
         failure(LANG(key: "dontOpenCamera"))
+    }
+    
+    fileprivate func initNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(willShowKeyBoard(notifictaion:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willHideKeyBoard(notifictaion:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didKeyBoardChangeFrame(notifictaion:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+    }
+    
+    fileprivate func deInitNotification() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
     }
     
     @objc func willHideKeyBoard (notifictaion: NSNotification) {

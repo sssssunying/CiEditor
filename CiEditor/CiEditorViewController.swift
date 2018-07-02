@@ -12,15 +12,25 @@ import Photos
 class CiEditorViewController: SBaseViewController {
     
     var viewModel: CiEditorViewModel = CiEditorViewModel()
+    
+    var showKeyBoard: CompleteBlockWithoutReturnWithoutParameter?
+    var hideKeyBoard: CompleteBlockWithoutReturnWithoutParameter?
+    var sendClosure : CompleteBlockWithoutReturnWithoutParameter?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = BGCOLOR
+        initNotification()
+        if (viewModel.editorType == ciEditorTypePostTopic) {
+            titleTextField.becomeFirstResponder()
+        } else {
+            contentTextView.becomeFirstResponder()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let backButton = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 60, height: 37))
+        let backButton = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 37, height: 37))
         backButton.setImage(UIImage(named: "return"), for: .normal)
         backButton.addTarget(self, action: #selector(back), for: .touchUpInside)
         let tmp = UIBarButtonItem.init(customView: backButton)
@@ -31,9 +41,11 @@ class CiEditorViewController: SBaseViewController {
     private var ciCamButton: CiBaseButton?
     private var pictureMaxCount: Int = 1
     private let pictrueViewHeight: CGFloat = 258 + ((iPhoneX) ? 34 : 0)
+    private var isKeyBoardShow = false
+    private let toolViewHeight: CGFloat = 44
     
     fileprivate lazy var toolView: UIView = UIView().then {
-        $0.frame = CGRect(x: 0, y: 0, width: SCREENWIDTH, height: 44)
+        $0.frame = CGRect(x: 0, y: 0, width: SCREENWIDTH, height: toolViewHeight)
         $0.backgroundColor = .white
     }
     
@@ -117,12 +129,12 @@ extension CiEditorViewController {
     /// 生成界面
     func generateView() {
         title = viewModel.editorType
-        ciPicButton = CiBaseButton(frame: CGRect.init(x: 52 * 0, y: 0, width: 52, height: 44))
+        ciPicButton = CiBaseButton(frame: CGRect.init(x: 52 * 0, y: 0, width: 52, height: toolViewHeight))
         ciPicButton?.generateButton(imageName: "cireply_picture")
         imageCountTipLabel.frame = CGRect.init(x: 52 - 12 - 6, y: 6, width: 12, height: 12)
         ciPicButton?.addSubview(imageCountTipLabel)
         ciPicButton?.addTarget(self, action: #selector(picture(sender:)), for: .touchUpInside)
-        ciCamButton = CiBaseButton(frame: CGRect.init(x: 52 * 1, y: 0, width: 52, height: 44))
+        ciCamButton = CiBaseButton(frame: CGRect.init(x: 52 * 1, y: 0, width: 52, height: toolViewHeight))
         ciCamButton?.generateButton(imageName: "cireply_camare")
         ciCamButton?.addTarget(self, action: #selector(takePhoto(sender:)), for: .touchUpInside)
     
@@ -133,7 +145,7 @@ extension CiEditorViewController {
         case ciEditorTypeWriteDiary:
             contentTextView.frame = CGRect.init(x: 0, y: 0, width: SCREENWIDTH, height: 190)
             view.addSubview(contentTextView)
-            toolView.frame = CGRect.init(x: 0, y: 190, width: SCREENWIDTH, height: 44)
+            toolView.frame = CGRect.init(x: 0, y: 190, width: SCREENWIDTH, height: toolViewHeight)
             break
         default:
             pictureMaxCount = 9
@@ -141,7 +153,7 @@ extension CiEditorViewController {
             view.addSubview(titleTextField)
             contentTextView.frame = CGRect.init(x: 0, y: 51, width: SCREENWIDTH, height: 190)
             view.addSubview(contentTextView)
-            toolView.frame = CGRect.init(x: 0, y: 241, width: SCREENWIDTH, height: 44)
+            toolView.frame = CGRect.init(x: 0, y: 241, width: SCREENWIDTH, height: toolViewHeight)
             break
         }
         view.addSubview(toolView)
@@ -149,7 +161,7 @@ extension CiEditorViewController {
     
     @objc func picture( sender: UIButton ) {
         pictureView.reObtainLocalData()
-        pictureView.frame = CGRect.init(x: 0, y: SCREENHEIGHT - (iPhoneX ? 88 : 64) - pictrueViewHeight, width: SCREENWIDTH, height: pictrueViewHeight)
+        pictureView.frame = CGRect(x: 0, y: SCREENHEIGHT - (iPhoneX ? 88 : 64) - pictrueViewHeight, width: SCREENWIDTH, height: pictrueViewHeight)
         pictureView.isHidden = false
         sender.isSelected = true
         ciCamButton?.isSelected = false
@@ -169,20 +181,82 @@ extension CiEditorViewController {
         failure(LANG(key: "dontOpenCamera"))
     }
     
+    fileprivate func initNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(willShowKeyBoard(notifictaion:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willHideKeyBoard(notifictaion:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didKeyBoardChangeFrame(notifictaion:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+    }
+    
+    fileprivate func deInitNotification() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+    }
+    
+    @objc func willHideKeyBoard (notifictaion: NSNotification) {
+        guard isKeyBoardShow == true else {
+            return
+        }
+        isKeyBoardShow             = false
+        if (hideKeyBoard != nil) {
+            hideKeyBoard!()
+        }
+        var frameOfView            = view.frame
+        frameOfView.size.height    = view.frame.height
+        frameOfView.origin.y       = SCREENHEIGHT - frameOfView.size.height
+        let duration: TimeInterval = notifictaion.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as! TimeInterval
+        let options: Int           = notifictaion.userInfo?[UIKeyboardAnimationCurveUserInfoKey] as! Int
+        UIView.animate(withDuration: duration, delay: 0, options: UIViewAnimationOptions(rawValue: UInt(options)), animations: {
+            if self.pictureView.isHidden == false {
+                self.toolView.frame = CGRect(x: 0, y: SCREENHEIGHT - (iPhoneX ? 88 : 64) - self.pictrueViewHeight - self.toolViewHeight , width: SCREENWIDTH, height: self.toolViewHeight)
+            } else {
+                self.toolView.frame = CGRect(x: 0, y: SCREENHEIGHT - self.toolViewHeight, width: SCREENWIDTH, height: self.toolViewHeight)
+            }
+        }) { (isFinish) in
+        }
+        
+    }
+    
+    @objc func willShowKeyBoard (notifictaion: NSNotification) {
+        guard isKeyBoardShow == false else {
+            return
+        }
+        isKeyBoardShow                     = true
+        if (showKeyBoard != nil) {
+            showKeyBoard!()
+        }
+        let framOfKeyboard: CGRect = notifictaion.userInfo?[UIKeyboardFrameEndUserInfoKey] as! CGRect
+        var frameOfView                    = toolView.frame
+        frameOfView.origin.y               = SCREENHEIGHT - frameOfView.size.height - framOfKeyboard.size.height - (iPhoneX ? 88 : 64)
+        let duration: TimeInterval         = notifictaion.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as! TimeInterval
+        let options: Int = notifictaion.userInfo?[UIKeyboardAnimationCurveUserInfoKey] as! Int
+        UIView.animate(withDuration: duration, delay: 0, options: UIViewAnimationOptions(rawValue: UInt(options)), animations: {
+            self.toolView.frame = frameOfView
+        }) { (isFinish) in
+        }
+    }
+    
+    @objc func didKeyBoardChangeFrame(notifictaion: NSNotification) {
+        guard isKeyBoardShow == true else {
+            return
+        }
+        let framOfKeyboard: CGRect = notifictaion.userInfo?[UIKeyboardFrameEndUserInfoKey] as! CGRect
+        var frameOfView                    = toolView.frame
+        frameOfView.origin.y               = SCREENHEIGHT - frameOfView.size.height - framOfKeyboard.size.height - (iPhoneX ? 88 : 64)
+        let duration: TimeInterval         = notifictaion.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as! TimeInterval
+        let options: Int = notifictaion.userInfo?[UIKeyboardAnimationCurveUserInfoKey] as! Int
+        UIView.animate(withDuration: duration, delay: 0, options: UIViewAnimationOptions(rawValue: UInt(options)), animations: {
+            self.toolView.frame = frameOfView
+        }) { (isFinish) in
+        }
+    }
+    
     fileprivate func hideKeyBroad() {
         contentTextView.resignFirstResponder()
         if viewModel.editorType == ciEditorTypePostTopic {
             titleTextField.resignFirstResponder()
         }
     }
-    
-// MARK: 发帖界面专用
-    
-    
-    
-   
-// MARK: 写日记专用
-    
     
     
 }
